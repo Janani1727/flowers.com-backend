@@ -1,5 +1,6 @@
 const express = require("express")
 const cors = require('cors')
+require('dotenv').config()
 const { connection } = require("./config/db")
 const { userRoute } = require("./routes/user.route")
 const { productRoute } = require("./routes/product.route")
@@ -82,7 +83,7 @@ app.use(authenticate)
 app.use("/cart", cartRoute)
 
 
-app.listen(4500, async () => {
+app.listen(process.env.port, async () => {
     try {
         await connection
         console.log("Connected to db")
