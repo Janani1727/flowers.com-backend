@@ -1,6 +1,6 @@
 const express = require("express")
 const cors = require('cors')
-require('dotenv').config()
+
 const { connection } = require("./config/db")
 const { userRoute } = require("./routes/user.route")
 const { productRoute } = require("./routes/product.route")
@@ -20,7 +20,7 @@ app.get("/products", async (req, res) => {
 
     const { q, limit, skip, sort, order, category } = req.query
 
-    const query = { category: { $regex: q, $options: "i" } }
+    const query = {name: { $regex: q, $options: "i" } }
     let x;
     if (q == undefined && category == undefined ) {
         x = {}
@@ -77,12 +77,12 @@ app.get("/usersdata", async (req, res) => {
     }
 })
 app.use("/products", productRoute)
-
+app.use(authenticate)
 app.use("/cart", cartRoute)
-// app.use(authenticate)
 
 
-app.listen(process.env.port, async () => {
+
+app.listen(4500, async () => {
     try {
         await connection
         console.log("Connected to db")

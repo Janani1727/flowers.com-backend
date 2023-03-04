@@ -5,6 +5,7 @@ const cartSchema = mongoose.Schema({
     price: Number,
     category: String,
     img: String,
+    qty:Number
 })
 
 const cartModel = mongoose.model("carts", cartSchema)
