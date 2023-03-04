@@ -79,8 +79,9 @@ app.get("/usersdata", async (req, res) => {
     }
 })
 app.use("/products", productRoute)
-app.use(authenticate)
+
 app.use("/cart", cartRoute)
+app.use(authenticate)
 
 
 app.listen(process.env.port, async () => {
