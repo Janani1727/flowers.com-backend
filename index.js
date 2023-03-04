@@ -42,8 +42,6 @@ app.get("/products", async (req, res) => {
         y = { price: order }
     }
    
-
-
     try {
         const data = await productModel.find(x).sort(y).limit(limit).skip(skip)
         res.send(data)
